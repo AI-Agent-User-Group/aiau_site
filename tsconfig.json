@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "jsx": "react-jsx",
+    "allowJs": false,
+    "noEmit": true,
+    "isolatedModules": true,
+    "types": []
+  },
+  "include": ["src", "src/worker.ts", "vite.config.ts"],
+  "exclude": ["dist", "node_modules"]
+}
+
+
