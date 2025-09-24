@@ -6,6 +6,7 @@ const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
 type Route = 'home' | 'privacy' | 'conduct';
+const isDev = import.meta.env.DEV;
 
 function currentRoute(): Route {
   const p = location.pathname || '/';
@@ -16,6 +17,13 @@ function currentRoute(): Route {
 
 async function render() {
   const route = currentRoute();
+  if (!isDev) {
+    // In production, rely on prerendered static HTML for subpages
+    if (route === 'privacy' || route === 'conduct') {
+      updateAriaCurrent();
+      return;
+    }
+  }
   switch (route) {
     case 'privacy':
       await renderMarkdownPage('プライバシーポリシー', '/md/privacy-policy.md');
@@ -140,6 +148,7 @@ function updateAriaCurrent() {
 
 // Intercept click on internal links for SPA navigation
 document.addEventListener('click', (e) => {
+  if (!isDev) return; // In production, let browser do full navigation
   const target = e.target as HTMLElement | null;
   if (!target) return;
   const anchor = target.closest('a') as HTMLAnchorElement | null;
