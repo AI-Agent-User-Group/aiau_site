@@ -9,7 +9,7 @@ command = "npm run build"
 [assets]
 directory = "./dist"
 binding = "ASSETS"
-not_found_handling = "single-page-application"
+not_found_handling = "404-page"
 
 # Optional: set routes when binding a custom domain in code
 # routes = [
