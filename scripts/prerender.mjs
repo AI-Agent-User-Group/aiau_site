@@ -1,5 +1,5 @@
 // Generate static HTML for better SEO after Vite build
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, cp } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { marked } from 'marked';
@@ -299,6 +299,26 @@ async function main() {
     }
   );
   await writeFile(resolve(distDir, '404.html'), notFoundHtml, 'utf8');
+
+  // 6) Copy markdown sources for CSR fallback (so /md/* can be fetched by the SPA)
+  const srcMd = resolve(projectRoot, 'md');
+  if (existsSync(srcMd)) {
+    await cp(srcMd, resolve(distDir, 'md'), { recursive: true });
+  }
+
+  // 7) _headers for static assets (Workers Static Assets custom headers)
+  // - Harden security for static HTML responses
+  // - Aggressive cache for hashed assets under /assets/
+  const headersTxt = `
+/*
+  Referrer-Policy: no-referrer-when-downgrade
+  X-Content-Type-Options: nosniff
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+/assets/*
+  Cache-Control: public, max-age=31556952, immutable
+`;
+  await writeFile(resolve(distDir, '_headers'), headersTxt.trimStart(), 'utf8');
 }
 
 main().catch((err) => {

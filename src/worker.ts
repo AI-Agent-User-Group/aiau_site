@@ -24,25 +24,9 @@ export default {
       return new Response(r.body, { status: r.status, headers });
     };
 
-    // Try static asset first
+    // Defer static routing to Assets pipeline (SPA handling is configured in wrangler.toml)
     const res = await env.ASSETS.fetch(request);
-    if (res && res.status !== 404) return addSecurityHeaders(res);
-
-    // Fallback rules:
-    // 1) If path maps to a directory that has an index.html (prerendered), serve it
-    // 2) Else serve root index.html (SPA fallback)
-    const url = new URL(request.url);
-    const path = url.pathname.endsWith('/') ? url.pathname : `${url.pathname}/`;
-    const dirIndex = new URL(`${path}index.html`, url);
-    const tryDir = await env.ASSETS.fetch(new Request(dirIndex, request));
-    if (tryDir && tryDir.status !== 404) return addSecurityHeaders(tryDir);
-    // If direct file not found, serve 404.html when not root
-    if (url.pathname !== '/' && !url.pathname.startsWith('/assets/')) {
-      const nf = await env.ASSETS.fetch(new Request(new URL('/404.html', url), request));
-      if (nf && nf.status !== 404) return addSecurityHeaders(new Response(nf.body, { status: 404, headers: nf.headers }));
-    }
-    const root = await env.ASSETS.fetch(new Request(new URL('/index.html', url), request));
-    return addSecurityHeaders(root);
+    return addSecurityHeaders(res);
   },
 };
 
