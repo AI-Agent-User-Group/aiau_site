@@ -1,4 +1,4 @@
-name = "aiau-site"
+name = "aiau"
 main = "src/worker.ts"
 compatibility_date = "2025-09-24"
 
