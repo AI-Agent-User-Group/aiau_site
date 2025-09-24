@@ -2,6 +2,9 @@ name = "aiau"
 main = "src/worker.ts"
 compatibility_date = "2025-09-24"
 
+[build]
+command = "npm run build"
+
 # Serve static assets produced by Vite from the dist directory
 [assets]
 directory = "./dist"
