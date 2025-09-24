@@ -26,40 +26,40 @@ async function render() {
     default:
       renderHome();
   }
+  updateAriaCurrent();
 }
 
 function renderHome() {
   document.title = 'AIAU | AI Agent User Group';
   app.innerHTML = `
-    <section class="py-8">
+    <section>
+      <blockquote class="rounded-lg border border-gray-200 p-4 text-sm text-gray-700 dark:border-neutral-800 dark:text-neutral-200">
       <h1 class="text-3xl md:text-4xl font-bold tracking-tight">AI Agent User Group</h1>
-      <p class="mt-3 text-gray-600 dark:text-neutral-300">AIエージェントに関する知見の共有と交流のためのコミュニティ。</p>
-      <blockquote class="mt-6 rounded-lg border border-gray-200 p-4 text-sm text-gray-700 dark:border-neutral-800 dark:text-neutral-200">
+      <p class="mt-8 text-gray-600 dark:text-neutral-300">AIエージェントに関する知見の共有と交流のためのコミュニティ。</p>
         <p>AIエージェントを一人で探求する時代は、もう終わり。<br/>だって、その面白さ、一人で味わうなんて、もったいない！</p>
-        <p class="mt-2">「このプロンプト、神かも！」って閃いた瞬間。 「こんな使い方、ヤバい！」って発見した興奮。</p>
+        <p class="mt-8">「このプロンプト、神かも！」って閃いた瞬間。 「こんな使い方、ヤバい！」って発見した興奮。</p>
         <p class="mt-2">そんな熱量を、誰かに「聞いて！」って言いたくなりませんか？</p>
         <p class="mt-2">ここは、AIエージェントの「面白い！」をシェアして、100倍楽しむための遊び場です。 最新ツールに一緒に驚いたり、自作エージェントを自慢しあったり。</p>
         <p class="mt-2">必要なのは専門知識より「AIが好き！」って気持ちだけ。 さあ、あなたの熱量を、ここで思いっきり解放してください！</p>
-      </blockquote>
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a href="/privacy-policy" class="inline-flex items-center rounded-md bg-gray-900 px-4 py-2 text-white hover:bg-gray-800 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-white">プライバシーポリシー</a>
-        <a href="/code-of-conduct" class="inline-flex items-center rounded-md border border-gray-300 px-4 py-2 hover:bg-gray-50 dark:border-neutral-700 dark:hover:bg-neutral-900">行動規範</a>
-        <a href="https://discord.gg/GatQE7wGvK" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 rounded-md bg-[#5865F2] px-4 py-2 text-white hover:bg-[#4752C4]">
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.369a19.79 19.79 0 0 0-4.885-1.515.08.08 0 0 0-.08.038c-.212.375-.444.864-.607 1.249-1.844-.277-3.68-.277-5.486 0-.165-.394-.405-.874-.618-1.249a.08.08 0 0 0-.08-.038 19.736 19.736 0 0 0-4.885 1.515.07.07 0 0 0-.032.028C2.78 8.399 2.123 12.245 2.333 16.059a.08.08 0 0 0 .03.057 19.9 19.9 0 0 0 5.994 3.03.08.08 0 0 0 .084-.029c.461-.63.873-1.294 1.226-1.993a.08.08 0 0 0-.042-.105 12.28 12.28 0 0 1-1.872-.892.08.08 0 0 1-.007-.127c.126-.1.252-.198.372-.293a.07.07 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.062 0a.07.07 0 0 1 .077.01c.12.095.246.193.372.292a.08.08 0 0 1-.006.127c-.6.35-1.221.652-1.873.893a.08.08 0 0 0-.04.105c.36.699.772 1.362 1.225 1.993a.08.08 0 0 0 .084.028 19.876 19.876 0 0 0 5.994-3.03.08.08 0 0 0 .031-.056c.5-8.245-3.019-12.085-8.615-11.662ZM9.86 13.104c-1.182 0-2.156-1.085-2.156-2.419 0-1.333.956-2.418 2.156-2.418 1.21 0 2.175 1.093 2.156 2.419 0 1.333-.956 2.418-2.156 2.418Zm7.323 0c-1.182 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.156-2.418 1.211 0 2.176 1.093 2.157 2.419 0 1.333-.946 2.418-2.156 2.418Z"/></svg>
+
+
+        <a href="https://discord.gg/GatQE7wGvK" target="_blank" rel="noreferrer" class="mt-6 inline-flex items-center gap-2 rounded-md bg-[#5865F2] px-4 py-2 text-white hover:bg-[#4752C4]">
+          <i class="fa-brands fa-discord text-[16px]" aria-hidden="true"></i>
           <span>コミュニティに参加</span>
         </a>
-      </div>
+      </blockquote>
     </section>
     <section class="mt-10 grid gap-6">
       <div class="rounded-lg border border-gray-200 p-6 dark:border-neutral-800">
         <h2 class="text-xl font-semibold">最新情報</h2>
-        <p class="mt-2 text-sm text-gray-600 dark:text-neutral-300">X: <a class="underline" href="https://x.com/ai_agent_ug" target="_blank" rel="noreferrer">@ai_agent_ug</a></p>
+        <p class="mt-2 text-sm text-gray-600 dark:text-neutral-300">X: <a class="underline" href="https://x.com/ai_agent_ug" target="_blank" rel="noopener noreferrer">@ai_agent_ug</a></p>
+        <p class="mt-2 text-sm text-gray-600 dark:text-neutral-300">Connpass: <a class="underline" href="https://aiau.connpass.com/" target="_blank" rel="noopener noreferrer">AIAU</a></p>
       </div>
     </section>
     <section class="mt-10 rounded-lg border border-gray-200 p-6 dark:border-neutral-800">
       <h2 class="text-xl font-semibold">イベントカレンダー</h2>
       <div class="mt-4">
-        <iframe
+        <iframe loading="lazy"
           src="https://luma.com/embed/calendar/cal-SPkxwYab1fnvYMe/events"
           width="100%"
           height="450"
@@ -80,7 +80,7 @@ function renderHome() {
         怪しい動き、ハラスメント、営業・交流目的など勉強の妨げとなる行為を見かけたり、何か不快に感じることをされたりした場合は、小さなことでもお気軽にご共有ください。内容を精査し、厳正に対処いたします。
       </p>
       <div class="mt-4">
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKUEXBcYdfbCnZ-KMCnJW7G9aWuHEhNByzci3UXlBlJjTdnw/viewform" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 rounded-md bg-gray-900 px-4 py-2 text-white hover:bg-gray-800 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-white" aria-label="快適な活動環境づくりのご報告フォームを開く（新しいタブ）">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKUEXBcYdfbCnZ-KMCnJW7G9aWuHEhNByzci3UXlBlJjTdnw/viewform" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-md bg-gray-900 px-4 py-2 text-white hover:bg-gray-800 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-white" aria-label="快適な活動環境づくりのご報告フォームを開く（新しいタブ）">
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 3v8h8v2h-8v8h-2v-8H3V11h8V3h2Z"/></svg>
           <span>フォームから報告（匿名可）</span>
         </a>
@@ -119,6 +119,25 @@ async function renderMarkdownPage(title: string, path: string) {
   }
 }
 
+function updateAriaCurrent() {
+  try {
+    const nav = document.getElementById('site-nav');
+    if (!nav) return;
+    const links = Array.from(nav.querySelectorAll('a[href^="/"]')) as HTMLAnchorElement[];
+    const normalize = (p: string) => (p !== '/' && p.endsWith('/') ? p.slice(0, -1) : p);
+    const current = normalize(location.pathname || '/');
+    for (const a of links) {
+      const href = a.getAttribute('href') || '';
+      const match = normalize(href) === current;
+      if (match) {
+        a.setAttribute('aria-current', 'page');
+      } else {
+        a.removeAttribute('aria-current');
+      }
+    }
+  } catch {}
+}
+
 // Intercept click on internal links for SPA navigation
 document.addEventListener('click', (e) => {
   const target = e.target as HTMLElement | null;
@@ -138,5 +157,45 @@ document.addEventListener('click', (e) => {
 
 window.addEventListener('popstate', render);
 render();
+
+// Mobile nav toggle with transition classes
+const menuButton = document.getElementById('menu-button');
+const siteNav = document.getElementById('site-nav');
+if (menuButton && siteNav) {
+  const closedClasses = ['opacity-0', 'pointer-events-none', '-translate-y-2', 'scale-95'];
+
+  const openMenu = () => {
+    siteNav.classList.remove(...closedClasses);
+    menuButton.setAttribute('aria-expanded', 'true');
+  };
+
+  const closeMenu = () => {
+    siteNav.classList.add(...closedClasses);
+    menuButton.setAttribute('aria-expanded', 'false');
+  };
+
+  menuButton.addEventListener('click', () => {
+    const expanded = menuButton.getAttribute('aria-expanded') === 'true';
+    if (expanded) {
+      closeMenu();
+    } else {
+      siteNav.classList.remove('hidden');
+      requestAnimationFrame(openMenu);
+    }
+  });
+
+  // Close when clicking outside on small screens
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement | null;
+    if (!target) return;
+    const withinHeader = target.closest('header');
+    if (!withinHeader && menuButton.getAttribute('aria-expanded') === 'true') {
+      closeMenu();
+    }
+  });
+
+  // Ensure closed state initially on small screens
+  closeMenu();
+}
 
 

@@ -4,18 +4,57 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#0D1B28" />
+    <meta name="robots" content="index,follow" />
+    <meta name="description" content="AIエージェントの知見共有と交流のためのコミュニティ AIAU。イベント、行動規範、プライバシーポリシーを掲載。" />
+    <link rel="canonical" href="https://aiau.group/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <title>AIAU | AI Agent User Group</title>
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="AIAU" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="AIAU | AI Agent User Group" />
+    <meta property="og:description" content="AIエージェントの知見共有と交流のためのコミュニティ AIAU。イベント、行動規範、プライバシーポリシーを掲載。" />
+    <meta property="og:url" content="https://aiau.group/" />
+    <meta property="og:image" content="https://aiau.group/OGP.jpg" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AIAU | AI Agent User Group" />
+    <meta name="twitter:description" content="AIエージェントの知見共有と交流のためのコミュニティ AIAU。" />
+    <meta name="twitter:image" content="https://aiau.group/OGP.jpg" />
+    <!-- Organization JSON-LD (basic, refined at prerender) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "AIAU | AI Agent User Group",
+      "url": "https://aiau.group/",
+      "logo": "https://aiau.group/OGP.jpg",
+      "sameAs": [
+        "https://x.com/ai_agent_ug",
+        "https://discord.gg/GatQE7wGvK"
+      ]
+    }
+    </script>
+    <link rel="preconnect" href="https://luma.com" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
   <body class="min-h-dvh bg-white text-gray-900 antialiased dark:bg-neutral-950 dark:text-neutral-100">
+    <a href="#app" class="sr-only focus:not-sr-only absolute left-2 top-2 z-50 rounded bg-black/80 px-3 py-2 text-white">メインへスキップ</a>
     <header class="border-b border-gray-200/70 dark:border-neutral-800">
-      <div class="mx-auto max-w-5xl px-4 py-4 flex items-center justify-between">
+      <div class="mx-auto max-w-5xl px-4 py-4 flex items-center justify-between relative">
         <a href="/" class="font-semibold tracking-wide">AIAU</a>
-        <nav class="flex items-center gap-4 text-sm">
+        <button id="menu-button" class="md:hidden inline-flex items-center justify-center rounded-md p-2 text-gray-700 hover:bg-gray-100 dark:text-neutral-200 dark:hover:bg-neutral-800" aria-controls="site-nav" aria-expanded="false" aria-label="メニューを開閉">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+        <nav id="site-nav" aria-label="メイン" class="absolute left-0 right-0 top-full z-20 flex flex-col gap-2 border-b border-gray-200 bg-white p-3 text-sm dark:border-neutral-800 dark:bg-neutral-950 md:static md:flex md:flex-row md:items-center md:gap-4 md:border-0 md:bg-transparent md:p-0 transition-all duration-200 ease-out origin-top opacity-0 pointer-events-none -translate-y-2 scale-95 md:opacity-100 md:pointer-events-auto md:translate-y-0 md:scale-100">
           <a class="hover:underline" href="/">TOP</a>
           <a class="hover:underline" href="/privacy-policy">プライバシーポリシー</a>
           <a class="hover:underline" href="/code-of-conduct">行動規範</a>
-          <a class="inline-flex items-center gap-2 rounded-md bg-[#5865F2] px-3 py-1.5 text-white hover:bg-[#4752C4]" href="https://discord.gg/GatQE7wGvK" target="_blank" rel="noreferrer">
-            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.369a19.79 19.79 0 0 0-4.885-1.515.08.08 0 0 0-.08.038c-.212.375-.444.864-.607 1.249-1.844-.277-3.68-.277-5.486 0-.165-.394-.405-.874-.618-1.249a.08.08 0 0 0-.08-.038 19.736 19.736 0 0 0-4.885 1.515.07.07 0 0 0-.032.028C2.78 8.399 2.123 12.245 2.333 16.059a.08.08 0 0 0 .03.057 19.9 19.9 0 0 0 5.994 3.03.08.08 0 0 0 .084-.029c.461-.63.873-1.294 1.226-1.993a.08.08 0 0 0-.042-.105 12.28 12.28 0 0 1-1.872-.892.08.08 0 0 1-.007-.127c.126-.1.252-.198.372-.293a.07.07 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.062 0a.07.07 0 0 1 .077.01c.12.095.246.193.372.292a.08.08 0 0 1-.006.127c-.6.35-1.221.652-1.873.893a.08.08 0 0 0-.04.105c.36.699.772 1.362 1.225 1.993a.08.08 0 0 0 .084.028 19.876 19.876 0 0 0 5.994-3.03.08.08 0 0 0 .031-.056c.5-8.245-3.019-12.085-8.615-11.662ZM9.86 13.104c-1.182 0-2.156-1.085-2.156-2.419 0-1.333.956-2.418 2.156-2.418 1.21 0 2.175 1.093 2.156 2.419 0 1.333-.956 2.418-2.156 2.418Zm7.323 0c-1.182 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.156-2.418 1.211 0 2.176 1.093 2.157 2.419 0 1.333-.946 2.418-2.156 2.418Z"/></svg>
+          <a class="inline-flex items-center gap-2 rounded-md bg-[#5865F2] px-3 py-1.5 text-white hover:bg-[#4752C4] w-full justify-center md:w-auto" href="https://discord.gg/GatQE7wGvK" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-discord text-[16px]" aria-hidden="true"></i>
             <span>コミュニティに参加</span>
           </a>
         </nav>

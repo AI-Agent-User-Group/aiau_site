@@ -5,6 +5,11 @@ compatibility_date = "2025-09-24"
 # Serve static assets produced by Vite from the dist directory
 assets = { directory = "./dist" }
 
+# Optional: set routes when binding a custom domain in code
+# routes = [
+#   { pattern = "aiau.group/*", zone_name = "aiau.group" }
+# ]
+
 # Add routes/custom domain later via Cloudflare dashboard:
 # - DNS: aiau.group -> Cloudflare
 # - Workers Routes: aiau.group/* -> this worker
