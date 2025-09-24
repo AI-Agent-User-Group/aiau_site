@@ -88,8 +88,8 @@ AIAUはAIの学習と技術交流を目的としたコミュニティです。�
 
 * **イベント会場・コミュニティ活動中での報告**: 運営スタッフに直接お声がけください。
 * **オンラインでの報告**:
-    * AIAU 公式Xアカウント ダイレクトメッセージ: [https://x.com/ai_agent_ug](https://x.com/ai_agent_ug)
-    * 快適な活動環境づくりのご報告フォーム: [https://docs.google.com/forms/d/e/1FAIpQLSdKUEXBcYdfbCnZ-KMCnJW7G9aWuHEhNByzci3UXlBlJjTdnw/viewform](https://docs.google.com/forms/d/e/1FAIpQLSdKUEXBcYdfbCnZ-KMCnJW7G9aWuHEhNByzci3UXlBlJjTdnw/viewform)
+    * AIAU 公式Xアカウント ダイレクトメッセージ: [AIAU 公式Xアカウント（DM）](https://x.com/ai_agent_ug)
+    * 快適な活動環境づくりのご報告フォーム: [フォームを開く](https://docs.google.com/forms/d/e/1FAIpQLSdKUEXBcYdfbCnZ-KMCnJW7G9aWuHEhNByzci3UXlBlJjTdnw/viewform)
 
 AIAUは、報告者のプライバシーと安全を最優先に守ることをお約束します。ご報告いただいた内容は、対応に必要な範囲の関係者のみで共有し、厳密に取り扱います。
 
