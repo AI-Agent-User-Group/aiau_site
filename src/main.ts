@@ -24,6 +24,11 @@ async function render() {
       updateAriaCurrent();
       return;
     }
+    // Prevent overriding 404 pages on unknown paths; only render home at root
+    if (location.pathname !== '/') {
+      updateAriaCurrent();
+      return;
+    }
   }
   switch (route) {
     case 'privacy':
