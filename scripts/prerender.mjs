@@ -8,6 +8,10 @@ const projectRoot = process.cwd();
 const distDir = resolve(projectRoot, 'dist');
 const SITE_URL = process.env.SITE_URL || 'https://aiau.group';
 const ABS_OG_IMAGE = `${SITE_URL}/OGP.jpg`;
+// Page specific OGP images
+const ABS_OG_IMAGE_PP = `${SITE_URL}/OGP_PP.jpg`;
+const ABS_OG_IMAGE_COC = `${SITE_URL}/OGP_COC.jpg`;
+const ABS_OG_IMAGE_AH = `${SITE_URL}/OGP_AH.jpg`;
 
 function stripFrontMatter(md) {
   if (md.startsWith('---')) {
@@ -229,7 +233,7 @@ async function main() {
       title: 'プライバシーポリシー | AIAU',
       description: 'AIAUのプライバシーポリシー。個人情報の取り扱い方針についてご説明します。',
       url: `${SITE_URL}/privacy-policy/`,
-      ogImage: ABS_OG_IMAGE,
+      ogImage: ABS_OG_IMAGE_PP,
       type: 'article',
       breadcrumb: [
         { name: 'TOP', item: `${SITE_URL}/` },
@@ -248,7 +252,7 @@ async function main() {
       title: '行動規範 | AIAU',
       description: 'AIAUコミュニティの行動規範。誰もが安心して参加できるためのルールとガイドライン。',
       url: `${SITE_URL}/code-of-conduct/`,
-      ogImage: ABS_OG_IMAGE,
+      ogImage: ABS_OG_IMAGE_COC,
       type: 'article',
       breadcrumb: [
         { name: 'TOP', item: `${SITE_URL}/` },
@@ -267,7 +271,7 @@ async function main() {
       title: 'アンチハラスメントポリシー | AIAU',
       description: 'AIAUのアンチハラスメントポリシー。安全で敬意ある環境のための方針。',
       url: `${SITE_URL}/anti-harassment-policy/`,
-      ogImage: ABS_OG_IMAGE,
+      ogImage: ABS_OG_IMAGE_AH,
       type: 'article',
       breadcrumb: [
         { name: 'TOP', item: `${SITE_URL}/` },
