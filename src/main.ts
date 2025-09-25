@@ -5,13 +5,14 @@ const app = document.getElementById('app') as HTMLElement;
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-type Route = 'home' | 'privacy' | 'conduct';
+type Route = 'home' | 'privacy' | 'conduct' | 'anti';
 const isDev = import.meta.env.DEV;
 
 function currentRoute(): Route {
   const p = location.pathname || '/';
   if (p.startsWith('/privacy-policy')) return 'privacy';
   if (p.startsWith('/code-of-conduct')) return 'conduct';
+    if (p.startsWith('/anti-harassment-policy')) return 'anti';
   return 'home';
 }
 
@@ -19,7 +20,7 @@ async function render() {
   const route = currentRoute();
   if (!isDev) {
     // In production, rely on prerendered static HTML for subpages
-    if (route === 'privacy' || route === 'conduct') {
+    if (route === 'privacy' || route === 'conduct' || route === 'anti') {
       updateAriaCurrent();
       return;
     }
@@ -30,6 +31,9 @@ async function render() {
       break;
     case 'conduct':
       await renderMarkdownPage('行動規範 (Code of Conduct)', '/md/code-of-conduct.md');
+      break;
+    case 'anti':
+      await renderMarkdownPage('アンチハラスメントポリシー', '/md/anti-harassment-policy.md');
       break;
     default:
       renderHome();

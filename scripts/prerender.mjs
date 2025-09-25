@@ -149,6 +149,7 @@ function homeContent() {
       <div class="mt-6 flex flex-wrap gap-3">
         <a href="/privacy-policy" class="inline-flex items-center rounded-md bg-gray-900 px-4 py-2 text-white hover:bg-gray-800 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-white">プライバシーポリシー</a>
         <a href="/code-of-conduct" class="inline-flex items-center rounded-md border border-gray-300 px-4 py-2 hover:bg-gray-50 dark:border-neutral-700 dark:hover:bg-neutral-900">行動規範</a>
+        <a href="/anti-harassment-policy" class="inline-flex items-center rounded-md border border-gray-300 px-4 py-2 hover:bg-gray-50 dark:border-neutral-700 dark:hover:bg-neutral-900">アンチハラスメント</a>
         <a href="https://discord.gg/GatQE7wGvK" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 rounded-md bg-[#5865F2] px-4 py-2 text-white hover:bg-[#4752C4]">
           <i class="fa-brands fa-discord text-[16px]" aria-hidden="true"></i>
           <span>コミュニティに参加</span>
@@ -259,11 +260,31 @@ async function main() {
     await writeFile(resolve(outDir, 'index.html'), page, 'utf8');
   }
 
-  // 4) sitemap.xml & robots.txt
+  // 4) Anti-Harassment Policy
+  {
+    const content = await mdPageContent('md/anti-harassment-policy.md');
+    const page = injectContent(shellHtml, mainOpenTag, content, {
+      title: 'アンチハラスメントポリシー | AIAU',
+      description: 'AIAUのアンチハラスメントポリシー。安全で敬意ある環境のための方針。',
+      url: `${SITE_URL}/anti-harassment-policy/`,
+      ogImage: ABS_OG_IMAGE,
+      type: 'article',
+      breadcrumb: [
+        { name: 'TOP', item: `${SITE_URL}/` },
+        { name: 'アンチハラスメントポリシー', item: `${SITE_URL}/anti-harassment-policy/` },
+      ],
+    });
+    const outDir = resolve(distDir, 'anti-harassment-policy');
+    await ensureDir(outDir);
+    await writeFile(resolve(outDir, 'index.html'), page, 'utf8');
+  }
+
+  // 5) sitemap.xml & robots.txt
   const urls = [
     { loc: `${SITE_URL}/`, priority: '1.0', changefreq: 'weekly' },
     { loc: `${SITE_URL}/privacy-policy/`, priority: '0.3', changefreq: 'yearly' },
     { loc: `${SITE_URL}/code-of-conduct/`, priority: '0.4', changefreq: 'yearly' },
+    { loc: `${SITE_URL}/anti-harassment-policy/`, priority: '0.4', changefreq: 'yearly' },
   ];
   const lastmod = new Date().toISOString();
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls
@@ -277,7 +298,7 @@ async function main() {
   const robots = `User-agent: *\nAllow: /\nDisallow: /md/\n\nSitemap: ${SITE_URL}/sitemap.xml\n`;
   await writeFile(resolve(distDir, 'robots.txt'), robots, 'utf8');
 
-  // 5) 404 page
+  // 6) 404 page
   const notFoundHtml = injectContent(
     shellHtml,
     mainOpenTag,
@@ -300,13 +321,13 @@ async function main() {
   );
   await writeFile(resolve(distDir, '404.html'), notFoundHtml, 'utf8');
 
-  // 6) Copy markdown sources for CSR fallback (so /md/* can be fetched by the SPA)
+  // 7) Copy markdown sources for CSR fallback (so /md/* can be fetched by the SPA)
   const srcMd = resolve(projectRoot, 'md');
   if (existsSync(srcMd)) {
     await cp(srcMd, resolve(distDir, 'md'), { recursive: true });
   }
 
-  // 7) _headers for static assets (Workers Static Assets custom headers)
+  // 8) _headers for static assets (Workers Static Assets custom headers)
   // - Harden security for static HTML responses
   // - Aggressive cache for hashed assets under /assets/
   const headersTxt = `

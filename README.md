@@ -6,7 +6,7 @@
 - **Vite + Tailwind CSS v4**: 軽量・高速なビルドと最新スタイル。
 - **Cloudflare Workers 配信**: `ASSETS` バインディングで `dist/` を配信、SPAフォールバックを有効化。
 - **プレレンダリング**: `scripts/prerender.mjs` がビルド後に静的HTML、`sitemap.xml`、`robots.txt`、`404.html` を生成し、OG/TwitterカードやJSON-LDを挿入。
-- **Markdown ページ**: `md/` の `privacy-policy.md` と `code-of-conduct.md` をサイトに反映。
+- **Markdown ページ**: `md/` の `privacy-policy.md`、`code-of-conduct.md`、`anti-harassment-policy.md` をサイトに反映。
 - **アイコン自動生成**: `scripts/gen-icons.mjs` が `public/favicon.svg` からPWA用PNGを生成。
 
 ## セットアップ
