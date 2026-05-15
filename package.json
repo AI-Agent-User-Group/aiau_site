@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "vite",
+    "dev": "astro dev",
+    "check": "astro check",
     "icons": "node scripts/gen-icons.mjs",
-    "build": "npm run icons && vite build && node scripts/prerender.mjs",
-    "preview": "vite preview --strictPort --port 5173",
+    "build": "npm run icons && astro check && astro build",
+    "preview": "astro preview --port 5173",
     "deploy": "wrangler deploy"
   },
   "repository": {
@@ -23,17 +24,15 @@
   },
   "homepage": "https://github.com/AI-Agent-User-Group/aiau_site#readme",
   "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@tailwindcss/postcss": "^4.3.0",
     "@tailwindcss/typography": "^0.5.19",
-    "@tailwindcss/vite": "^4.3.0",
+    "astro": "^6.3.3",
     "autoprefixer": "^10.5.0",
     "postcss": "^8.5.14",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.3.0",
     "typescript": "^6.0.3",
-    "vite": "^8.0.13",
     "wrangler": "^4.92.0"
-  },
-  "dependencies": {
-    "marked": "^18.0.3"
   }
 }

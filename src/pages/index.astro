@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../config/site';
+import { homePageMetadata, homePolicyLinks } from '../data/site-pages';
+---
+
+<BaseLayout {...homePageMetadata}>
+  <section class="py-8">
+    <h1 class="text-3xl font-bold tracking-tight md:text-4xl">AI Agent User Group</h1>
+    <p class="mt-3 text-gray-600 dark:text-neutral-300">AIエージェントに関する知見の共有と交流のためのコミュニティ。</p>
+    <blockquote class="mt-6 rounded-lg border border-gray-200 p-4 text-sm text-gray-700 dark:border-neutral-800 dark:text-neutral-200">
+      <p>AIエージェントを一人で探求する時代は、もう終わり。<br />だって、その面白さ、一人で味わうなんて、もったいない！</p>
+      <p class="mt-2">「このプロンプト、神かも！」って閃いた瞬間。 「こんな使い方、ヤバい！」って発見した興奮。</p>
+      <p class="mt-2">そんな熱量を、誰かに「聞いて！」って言いたくなりませんか？</p>
+      <p class="mt-2">ここは、AIエージェントの「面白い！」をシェアして、100倍楽しむための遊び場です。 最新ツールに一緒に驚いたり、自作エージェントを自慢しあったり。</p>
+      <p class="mt-2">必要なのは専門知識より「AIが好き！」って気持ちだけ。 さあ、あなたの熱量を、ここで思いっきり解放してください！</p>
+    </blockquote>
+    <div class="mt-6 flex flex-wrap gap-3">
+      {
+        homePolicyLinks.map((link) => (
+          <a
+            href={link.href}
+            class:list={[
+              'inline-flex items-center rounded-md px-4 py-2',
+              link.variant === 'primary'
+                ? 'bg-gray-900 text-white hover:bg-gray-800 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-white'
+                : 'border border-gray-300 hover:bg-gray-50 dark:border-neutral-700 dark:hover:bg-neutral-900',
+            ]}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <a
+        href={siteConfig.communityLinks.discord}
+        target="_blank"
+        rel="noreferrer"
+        class="inline-flex items-center gap-2 rounded-md bg-[#5865F2] px-4 py-2 text-white hover:bg-[#4752C4]"
+      >
+        <i class="fa-brands fa-discord text-[16px]" aria-hidden="true"></i>
+        <span>コミュニティに参加</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="mt-10 grid gap-6">
+    <div class="rounded-lg border border-gray-200 p-6 dark:border-neutral-800">
+      <h2 class="text-xl font-semibold">最新情報</h2>
+      <p class="mt-2 text-sm text-gray-600 dark:text-neutral-300">
+        X:
+        <a class="underline" href={siteConfig.communityLinks.x} target="_blank" rel="noreferrer">@ai_agent_ug</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="mt-10 rounded-lg border border-gray-200 p-6 dark:border-neutral-800">
+    <h2 class="text-xl font-semibold">イベントカレンダー</h2>
+    <div class="mt-4">
+      <iframe
+        loading="lazy"
+        src={siteConfig.communityLinks.lumaCalendar}
+        width="100%"
+        height="450"
+        style="border: 1px solid #bfcbda88; border-radius: 4px;"
+        allowfullscreen
+        aria-hidden="false"
+        tabindex="0"
+      ></iframe>
+    </div>
+  </section>
+
+  <section class="mt-10 rounded-lg border border-gray-200 p-6 dark:border-neutral-800">
+    <h2 class="text-xl font-semibold">快適な活動環境づくりのご報告フォーム</h2>
+    <p class="mt-2 text-sm text-gray-600 dark:text-neutral-300">
+      AIAUのコミュニティをすべての人にとって快適で安全な学びの場とするため、皆様からの情報提供をお願いします。
+    </p>
+    <p class="mt-2 text-sm text-gray-600 dark:text-neutral-300">
+      怪しい動き、ハラスメント、営業・交流目的など勉強の妨げとなる行為を見かけたり、何か不快に感じることをされたりした場合は、小さなことでもお気軽にご共有ください。内容を精査し、厳正に対処いたします。
+    </p>
+    <div class="mt-4">
+      <a
+        href={siteConfig.communityLinks.reportForm}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-md bg-gray-900 px-4 py-2 text-white hover:bg-gray-800 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-white"
+        aria-label="快適な活動環境づくりのご報告フォームを開く（新しいタブ）"
+      >
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 3v8h8v2h-8v8h-2v-8H3V11h8V3h2Z"></path></svg>
+        <span>フォームから報告（匿名可）</span>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

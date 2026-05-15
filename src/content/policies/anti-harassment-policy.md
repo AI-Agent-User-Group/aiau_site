@@ -1,6 +1,11 @@
 ---
 title: アンチハラスメントポリシー (Anti-Harassment Policy)
-description: AIAU コミュニティにおけるハラスメント防止と通報・対応方針を定めます。
+metaTitle: アンチハラスメントポリシー | AIAU
+description: AIAUのアンチハラスメントポリシー。安全で敬意ある環境のための方針。
+ogImage: /OGP_AH.jpg
+priority: 0.4
+changefreq: yearly
+type: article
 ---
 
 # アンチハラスメントポリシー (Anti-Harassment Policy)
@@ -65,5 +70,3 @@ AIAUは、以下の行為を禁止します。詳細は [行動規範](/code-of-
 ### 附則
 
 2025年09月25日 制定
-
-

@@ -1,6 +1,11 @@
 ---
 title: プライバシーポリシー (Privacy Policy)
-description: AIAU のイベントおよびコミュニティ運営における個人情報の取り扱い方針を記載します。
+metaTitle: プライバシーポリシー | AIAU
+description: AIAUのプライバシーポリシー。個人情報の取り扱い方針についてご説明します。
+ogImage: /OGP_PP.jpg
+priority: 0.3
+changefreq: yearly
+type: article
 ---
 
 # プライバシーポリシー (Privacy Policy)

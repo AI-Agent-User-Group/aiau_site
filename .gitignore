@@ -27,6 +27,7 @@ desktop.ini
 
 # Build outputs / caches
 dist/
+.astro/
 .vite/
 coverage/
 .cache/

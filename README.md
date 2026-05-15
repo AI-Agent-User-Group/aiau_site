@@ -1,12 +1,14 @@
 ## AIAU | AI Agent User Group
 
-コミュニティ公式サイトのソースコードです。Vite + Tailwind CSSでフロントエンドを構築し、Cloudflare Workers（Workers Static Assets）で配信します。Markdownからの静的生成（プライバシーポリシー/行動規範）、SEO向けプレレンダリング、セキュリティヘッダー付与などを備えています。
+コミュニティ公式サイトのソースコードです。Astro + Tailwind CSS v4 で静的サイトを構築し、Cloudflare Workers Static Assets で配信します。コンテンツはAstro Content Collectionsで管理し、Cloudflare Worker はセキュリティヘッダー付与と静的アセット配信に責務を限定しています。
 
 ### 特徴
-- **Vite + Tailwind CSS v4**: 軽量・高速なビルドと最新スタイル。
-- **Cloudflare Workers 配信**: `ASSETS` バインディングで `dist/` を配信、SPAフォールバックを有効化。
-- **プレレンダリング**: `scripts/prerender.mjs` がビルド後に静的HTML、`sitemap.xml`、`robots.txt`、`404.html` を生成し、OG/TwitterカードやJSON-LDを挿入。
-- **Markdown ページ**: `md/` の `privacy-policy.md`、`code-of-conduct.md`、`anti-harassment-policy.md` をサイトに反映。
+- **Astro**: `src/pages/` と `src/layouts/` を中心に静的サイトを生成。
+- **Tailwind CSS v4**: PostCSS経由で読み込み、既存デザインを維持。
+- **Cloudflare Workers 配信**: `ASSETS` バインディングで `dist/` を配信し、Worker が CSP / HSTS などのヘッダーを付与。
+- **Content Collections**: `src/content/policies/` のMarkdownを型付きで管理。
+- **SEO出力**: canonical / OGP / Twitter Card / JSON-LD / `sitemap.xml` / `robots.txt` / `404.html` をAstro側で生成。
+- **Astro公式検証**: `astro check` をビルドフローに組み込み、Astro/TypeScriptの整合性を事前に検証。
 - **アイコン自動生成**: `scripts/gen-icons.mjs` が `public/favicon.svg` からPWA用PNGを生成。
 
 ## セットアップ
@@ -35,10 +37,9 @@ npm run build
 ```
 ビルド時に以下が自動実行されます。
 - アイコン生成: `scripts/gen-icons.mjs`
-- Viteビルド
-- プレレンダリング: `scripts/prerender.mjs`
+- Astroビルド
 
-プレレンダリングではサイトURLを `SITE_URL` から参照します（省略時は `https://aiau.group`）。独自ドメインで正しいOG画像URLや `sitemap.xml` を出力したい場合は、ビルド前に環境変数を設定してください。
+`SITE_URL` を指定すると、canonical URL や OGP URL、`sitemap.xml` の出力先URLが切り替わります（省略時は `https://aiau.group`）。
 
 - PowerShell（Windows）
 ```powershell
@@ -54,42 +55,45 @@ SITE_URL="https://example.com" npm run build
 ```bash
 npm run preview
 ```
-ポートは `5173` を使用します（`vite preview --port 5173`）。
+ポートは `5173` を使用します（`astro preview --port 5173`）。
 
 ## デプロイ（Cloudflare Workers）
 ```bash
 npm run deploy
 ```
 事前に `wrangler login` 済みであることが前提です。`wrangler.toml` では次を設定しています。
-- `main = "src/worker.ts"`: 配信用ワーカーのエントリ。
-- `[assets]` セクション: `dist/` を `ASSETS` としてバインドし、`not_found_handling = "single-page-application"` でSPAフォールバックを有効化。
+- `main = "src/worker.ts"`: セキュリティヘッダー付与と静的アセット配信を行うワーカーのエントリ。
+- `[assets]` セクション: Astro が生成した `dist/` を `ASSETS` としてバインド。
 
 カスタムドメインはCloudflareダッシュボードから設定できます（DNS → Workers Routes）。
 
 ## スクリプト一覧
 | コマンド | 説明 |
 | --- | --- |
-| `npm run dev` | 開発サーバ起動（Vite） |
+| `npm run dev` | 開発サーバ起動（Astro） |
+| `npm run check` | Astro公式の型・コンテンツ整合チェック |
 | `npm run icons` | SVGからPWAアイコンPNGを生成 |
-| `npm run build` | アイコン生成 → Viteビルド → プレレンダリング |
-| `npm run preview` | ビルド成果物のローカルプレビュー |
+| `npm run build` | アイコン生成 → `astro check` → Astroビルド |
+| `npm run preview` | Astro生成物のローカルプレビュー |
 | `npm run deploy` | WranglerでCloudflare Workersにデプロイ |
 
 ## ディレクトリ構成（主なもの）
-- `index.html`: ベースHTML。
-- `src/main.ts`: 開発時のSPA描画（本番はプレレンダリング出力を優先）。
-- `src/worker.ts`: Static Assets への委譲とセキュリティヘッダー付与。
-- `scripts/prerender.mjs`: トップ/各Markdownページの静的HTML生成、`sitemap.xml`/`robots.txt`/`404.html` 出力、`md/` のコピー。
+- `astro.config.mjs`: Astroビルド設定。
+- `src/layouts/BaseLayout.astro`: head / header / footer / 共通SEO定義。
+- `src/components/SiteHeader.astro`: 共通ナビゲーション。
+- `src/pages/`: ルート定義（`index.astro`, `manners.astro`, `[slug].astro`, `404.astro`, `sitemap.xml.ts`, `robots.txt.ts`）。
+- `src/content/policies/`: ポリシー系Markdownコンテンツ。
+- `src/content.config.ts`: Content Collectionsの定義。
+- `src/worker.ts`: Static Assets への委譲、セキュリティヘッダー付与、`/_astro/` 向けキャッシュ制御。
 - `scripts/gen-icons.mjs`: `public/favicon.svg` から `public/icons/` にPNG生成。
-- `md/`: コンテンツMarkdown（プライバシーポリシー/行動規範）。
-- `public/`: 静的アセット（`manifest.webmanifest`、OGPなど）。
+- `public/`: 静的アセット（`manifest.webmanifest`、OGP、ナビゲーション用スクリプトなど）。
 - `dist/`: ビルド成果物（デプロイ対象）。
 - `wrangler.toml`: Cloudflare Workers 設定。
 
 ## SEO/アクセシビリティ
-- プレレンダリング時に `title`/`description`/OG/Twitter/JSON-LD を挿入。
-- `sitemap.xml` と `robots.txt` を自動生成。
-- キーボードフォーカス用「メインへスキップ」リンクやナビの `aria-current` を調整。
+- Astroレイアウトで `title` / `description` / OGP / Twitter Card / JSON-LD / canonical を出力。
+- `sitemap.xml` と `robots.txt` をAstroの静的ルートとして生成。
+- キーボードフォーカス用「メインへスキップ」リンク、現在地付きナビ、モバイルメニューのアクセシビリティを維持。
 
 ## コミュニティ
 - X: `https://x.com/ai_agent_ug`

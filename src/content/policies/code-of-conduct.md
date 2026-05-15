@@ -1,6 +1,11 @@
 ---
 title: 行動規範 (Code of Conduct)
-description: AIAU コミュニティが大切にする価値観と行動の基準を定めています。
+metaTitle: 行動規範 | AIAU
+description: AIAUコミュニティの行動規範。誰もが安心して参加できるためのルールとガイドライン。
+ogImage: /OGP_COC.jpg
+priority: 0.4
+changefreq: yearly
+type: article
 ---
 
 # 行動規範 （Code of Conduct）
@@ -99,10 +104,4 @@ AIAUは、報告者のプライバシーと安全を最優先に守ることを�
 
 ### 附則
 
-2025年09月01日 制定
-
-2025年09月25日 改定
-
-
-
-
+2025年09月25日 制定
