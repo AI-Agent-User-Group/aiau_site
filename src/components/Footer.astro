@@ -1,0 +1,41 @@
+---
+import { siteConfig } from '../config/site';
+import { renderLucideIcon } from '../lib/lucide';
+import { X, MessageCircle } from 'lucide';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="mt-20 border-t border-hairline dark:border-dark-hairline">
+  <div class="mx-auto max-w-[1100px] px-6 py-16">
+    <div class="flex flex-col items-center justify-between gap-8 md:flex-row">
+      <div class="text-center md:text-left">
+        <p class="text-base font-semibold text-ink dark:text-canvas">{siteConfig.name}</p>
+        <p class="mt-1 text-sm text-muted">AI Agent User Group</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <a
+          href={siteConfig.communityLinks.x}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rounded-md p-2 text-body transition-colors hover:text-primary dark:text-muted"
+          aria-label="X（旧Twitter）"
+        >
+          <Fragment set:html={renderLucideIcon(X, { width: 18, height: 18 })} />
+        </a>
+        <a
+          href={siteConfig.communityLinks.discord}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rounded-md p-2 text-body transition-colors hover:text-primary dark:text-muted"
+          aria-label="Discord"
+        >
+          <Fragment set:html={renderLucideIcon(MessageCircle, { width: 18, height: 18 })} />
+        </a>
+      </div>
+    </div>
+    <div class="mt-12 text-center text-xs text-muted">
+      © {currentYear} AIAU — aiau.group
+    </div>
+  </div>
+</footer>

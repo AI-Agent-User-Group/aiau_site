@@ -1,5 +1,6 @@
 ---
 import SiteHeader from '../components/SiteHeader.astro';
+import Footer from '../components/Footer.astro';
 import { siteConfig } from '../config/site';
 import { buildOrganizationJsonLd, buildPageMetadata, type PageMetadata } from '../lib/seo';
 import '../styles.css';
@@ -9,7 +10,6 @@ interface Props extends PageMetadata {}
 const metadata = Astro.props;
 const { url, image, pageJsonLd } = buildPageMetadata(metadata);
 const organizationJsonLd = buildOrganizationJsonLd();
-const currentYear = new Date().getFullYear();
 ---
 
 <!doctype html>
@@ -18,7 +18,7 @@ const currentYear = new Date().getFullYear();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#0D1B28" />
+    <meta name="theme-color" content="#c73e2e" />
     <meta name="robots" content="index,follow" />
     <meta name="description" content={metadata.description} />
     <link rel="canonical" href={url} />
@@ -40,29 +40,18 @@ const currentYear = new Date().getFullYear();
     <meta name="twitter:image" content={image} />
 
     <link rel="preconnect" href="https://luma.com" />
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
 
     <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)}></script>
     <script is:inline type="application/ld+json" set:html={JSON.stringify(pageJsonLd)}></script>
   </head>
-  <body class="min-h-dvh bg-white text-gray-900 antialiased dark:bg-neutral-950 dark:text-neutral-100">
-    <a href="#main-content" class="sr-only absolute left-2 top-2 z-50 rounded bg-black/80 px-3 py-2 text-white focus:not-sr-only">
+  <body class="min-h-dvh antialiased">
+    <a href="#main-content" class="sr-only absolute left-4 top-4 z-50 rounded-md bg-ink px-4 py-2 text-sm text-canvas focus:not-sr-only dark:bg-canvas dark:text-ink">
       メインへスキップ
     </a>
     <SiteHeader currentPath={Astro.url.pathname} />
-    <main id="main-content" class="mx-auto max-w-5xl px-4 py-10">
+    <main id="main-content" class="mx-auto max-w-[1100px] px-6 py-20">
       <slot />
     </main>
-    <footer class="mt-16 border-t border-gray-200/70 dark:border-neutral-800">
-      <div class="mx-auto max-w-5xl px-4 py-6 text-xs text-gray-500 dark:text-neutral-400">
-        © {currentYear} AIAU — aiau.group
-      </div>
-    </footer>
+    <Footer />
   </body>
 </html>

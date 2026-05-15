@@ -1,7 +1,45 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-/* Base tweaks for nicer default rendering */
+@theme {
+  /* === BRAND === */
+  /* Single brand voltage - coral red, used scarcely */
+  --color-primary: #c73e2e;
+  --color-primary-active: #a83224;
+  --color-primary-soft: #e85d4c;
+
+  /* === SURFACES === */
+  /* Cursor: warm cream canvas, not white */
+  --color-canvas: #f7f7f4;
+  --color-canvas-soft: #fafaf7;
+  --color-surface: #ffffff;
+
+  /* === INK === */
+  /* Cursor: warm near-black, not pure black */
+  --color-ink: #26251e;
+  --color-body: #5a5852;
+  --color-muted: #807d72;
+  --color-muted-soft: #a09c92;
+
+  /* === HAIRLINES === */
+  /* Cursor: hairline-only depth, no shadows */
+  --color-hairline: #e6e5e0;
+  --color-hairline-strong: #cfcdc4;
+
+  /* === TIMELINE PASTELS (Cursor AI signature) === */
+  /* Playful accents for event flow steps only */
+  --color-tl-peach: #dfa88f;
+  --color-tl-mint: #9fc9a2;
+  --color-tl-blue: #9fbbe0;
+  --color-tl-lavender: #c0a8dd;
+  --color-tl-gold: #c08532;
+
+  /* === DARK MODE === */
+  --color-dark-canvas: #1a1614;
+  --color-dark-surface: #26251e;
+  --color-dark-hairline: #3a322d;
+}
+
 :root {
   color-scheme: light dark;
 }
@@ -11,14 +49,23 @@ html, body {
   padding: 0;
 }
 
-
+/* Cursor: magazine voice - weight 400 display, warm cream canvas */
 body {
-  font-family: "Helvetica Neue",
-    Arial,
-    "Hiragino Kaku Gothic ProN",
-    "Hiragino Sans",
-    Meiryo,
-    sans-serif;
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--color-dark-canvas);
+    color: var(--color-canvas);
+  }
+}
 
+::selection {
+  background-color: var(--color-primary);
+  color: white;
+}

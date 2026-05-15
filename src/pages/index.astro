@@ -1,93 +1,92 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { siteConfig } from '../config/site';
-import { homePageMetadata, homePolicyLinks } from '../data/site-pages';
+import { homePageMetadata } from '../data/site-pages';
+import Card from '../components/Card.astro';
+import Button from '../components/Button.astro';
+import ReportSection from '../components/ReportSection.astro';
+import { renderLucideIcon } from '../lib/lucide';
+import { MessageSquare, Calendar, ArrowRight } from 'lucide';
 ---
 
 <BaseLayout {...homePageMetadata}>
-  <section class="py-8">
-    <h1 class="text-3xl font-bold tracking-tight md:text-4xl">AI Agent User Group</h1>
-    <p class="mt-3 text-gray-600 dark:text-neutral-300">AIエージェントに関する知見の共有と交流のためのコミュニティ。</p>
-    <blockquote class="mt-6 rounded-lg border border-gray-200 p-4 text-sm text-gray-700 dark:border-neutral-800 dark:text-neutral-200">
-      <p>AIエージェントを一人で探求する時代は、もう終わり。<br />だって、その面白さ、一人で味わうなんて、もったいない！</p>
-      <p class="mt-2">「このプロンプト、神かも！」って閃いた瞬間。 「こんな使い方、ヤバい！」って発見した興奮。</p>
-      <p class="mt-2">そんな熱量を、誰かに「聞いて！」って言いたくなりませんか？</p>
-      <p class="mt-2">ここは、AIエージェントの「面白い！」をシェアして、100倍楽しむための遊び場です。 最新ツールに一緒に驚いたり、自作エージェントを自慢しあったり。</p>
-      <p class="mt-2">必要なのは専門知識より「AIが好き！」って気持ちだけ。 さあ、あなたの熱量を、ここで思いっきり解放してください！</p>
-    </blockquote>
-    <div class="mt-6 flex flex-wrap gap-3">
-      {
-        homePolicyLinks.map((link) => (
-          <a
-            href={link.href}
-            class:list={[
-              'inline-flex items-center rounded-md px-4 py-2',
-              link.variant === 'primary'
-                ? 'bg-gray-900 text-white hover:bg-gray-800 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-white'
-                : 'border border-gray-300 hover:bg-gray-50 dark:border-neutral-700 dark:hover:bg-neutral-900',
-            ]}
-          >
-            {link.label}
-          </a>
-        ))
-      }
-      <a
-        href={siteConfig.communityLinks.discord}
-        target="_blank"
-        rel="noreferrer"
-        class="inline-flex items-center gap-2 rounded-md bg-[#5865F2] px-4 py-2 text-white hover:bg-[#4752C4]"
-      >
-        <i class="fa-brands fa-discord text-[16px]" aria-hidden="true"></i>
-        <span>コミュニティに参加</span>
-      </a>
-    </div>
-  </section>
-
-  <section class="mt-10 grid gap-6">
-    <div class="rounded-lg border border-gray-200 p-6 dark:border-neutral-800">
-      <h2 class="text-xl font-semibold">最新情報</h2>
-      <p class="mt-2 text-sm text-gray-600 dark:text-neutral-300">
-        X:
-        <a class="underline" href={siteConfig.communityLinks.x} target="_blank" rel="noreferrer">@ai_agent_ug</a>
+  <!-- Hero: Cursor-style magazine voice. Weight 400, tight tracking -->
+  <section class="py-16 md:py-24">
+    <div class="mx-auto max-w-2xl text-center">
+      {/* Uppercase tracked label - Cursor signature */}
+      <p class="text-[11px] font-semibold uppercase tracking-[0.88px] text-muted">
+        AI Agent User Group
       </p>
+
+      {/* Display at weight 400 with negative tracking - magazine voice */}
+      <h1 class="mt-6 text-5xl font-normal leading-[1.1] tracking-tight text-ink md:text-6xl dark:text-canvas">
+        AIエージェントの<br />面白さを、一緒に
+      </h1>
+
+      <p class="mt-6 text-lg leading-relaxed text-body">
+        プロンプトの共有、自作エージェントの自慢、最新ツールの体験。<br class="hidden md:block" />
+        「AIが好き！」という気持ちがあれば、 specialist である必要はない。
+      </p>
+
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+        <Button href={siteConfig.communityLinks.discord} variant="primary" size="lg" target="_blank" rel="noopener noreferrer">
+          <Fragment set:html={renderLucideIcon(MessageSquare, { width: 16, height: 16 })} />
+          <span>コミュニティに参加</span>
+        </Button>
+        <Button href="/guidelines" variant="secondary" size="lg">
+          <span>ポリシーを確認</span>
+        </Button>
+      </div>
     </div>
   </section>
 
-  <section class="mt-10 rounded-lg border border-gray-200 p-6 dark:border-neutral-800">
-    <h2 class="text-xl font-semibold">イベントカレンダー</h2>
-    <div class="mt-4">
-      <iframe
-        loading="lazy"
-        src={siteConfig.communityLinks.lumaCalendar}
-        width="100%"
-        height="450"
-        style="border: 1px solid #bfcbda88; border-radius: 4px;"
-        allowfullscreen
-        aria-hidden="false"
-        tabindex="0"
-      ></iframe>
+  <!-- Event Calendar: 80px section rhythm, uppercase label -->
+  <section class="mt-20 border-t border-hairline pt-20 dark:border-dark-hairline">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-[11px] font-semibold uppercase tracking-[0.88px] text-muted">Events</p>
+      <h2 class="mt-4 text-3xl font-normal leading-[1.1] tracking-tight text-ink dark:text-canvas">イベントカレンダー</h2>
+      <p class="mt-3 text-body">次回イベントの参加登録はこちらから</p>
+    </div>
+    <div class="mt-10">
+      <Card class="overflow-hidden p-0" hover={false}>
+        <div class="flex items-center gap-3 border-b border-hairline p-5 dark:border-dark-hairline">
+          <div class="flex h-9 w-9 items-center justify-center rounded-md bg-primary/10 text-primary">
+            <Fragment set:html={renderLucideIcon(Calendar, { width: 18, height: 18 })} />
+          </div>
+          <div>
+            <p class="font-medium text-ink dark:text-canvas">Upcoming Events</p>
+            <p class="text-xs text-muted">powered by Luma</p>
+          </div>
+        </div>
+        <iframe
+          loading="lazy"
+          src={siteConfig.communityLinks.lumaCalendar}
+          width="100%"
+          height="450"
+          style="border: 0;"
+          allowfullscreen
+          aria-hidden="false"
+          tabindex="0"
+        ></iframe>
+      </Card>
     </div>
   </section>
 
-  <section class="mt-10 rounded-lg border border-gray-200 p-6 dark:border-neutral-800">
-    <h2 class="text-xl font-semibold">快適な活動環境づくりのご報告フォーム</h2>
-    <p class="mt-2 text-sm text-gray-600 dark:text-neutral-300">
-      AIAUのコミュニティをすべての人にとって快適で安全な学びの場とするため、皆様からの情報提供をお願いします。
-    </p>
-    <p class="mt-2 text-sm text-gray-600 dark:text-neutral-300">
-      怪しい動き、ハラスメント、営業・交流目的など勉強の妨げとなる行為を見かけたり、何か不快に感じることをされたりした場合は、小さなことでもお気軽にご共有ください。内容を精査し、厳正に対処いたします。
-    </p>
-    <div class="mt-4">
-      <a
-        href={siteConfig.communityLinks.reportForm}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 rounded-md bg-gray-900 px-4 py-2 text-white hover:bg-gray-800 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-white"
-        aria-label="快適な活動環境づくりのご報告フォームを開く（新しいタブ）"
-      >
-        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 3v8h8v2h-8v8h-2v-8H3V11h8V3h2Z"></path></svg>
-        <span>フォームから報告（匿名可）</span>
-      </a>
+  <!-- Latest Info -->
+  <section class="mt-20 border-t border-hairline pt-20 dark:border-dark-hairline">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-[11px] font-semibold uppercase tracking-[0.88px] text-muted">Updates</p>
+      <h2 class="mt-4 text-3xl font-normal leading-[1.1] tracking-tight text-ink dark:text-canvas">最新情報</h2>
+      <p class="mt-3 text-body">イベントの告知や活動報告は公式Xで行っています</p>
+    </div>
+    <div class="mt-8 text-center">
+      <Button href={siteConfig.communityLinks.x} variant="tertiary" target="_blank" rel="noopener noreferrer">
+        <span>@ai_agent_ug をフォロー</span>
+        <Fragment set:html={renderLucideIcon(ArrowRight, { width: 14, height: 14 })} />
+      </Button>
     </div>
   </section>
+
+  <!-- Report / Contact -->
+  <ReportSection />
 </BaseLayout>

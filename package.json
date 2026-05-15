@@ -23,6 +23,10 @@
     "url": "https://github.com/AI-Agent-User-Group/aiau_site/issues"
   },
   "homepage": "https://github.com/AI-Agent-User-Group/aiau_site#readme",
+  "dependencies": {
+    "animejs": "^4.0.2",
+    "lucide": "^1.16.0"
+  },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
     "@tailwindcss/postcss": "^4.3.0",

@@ -10,8 +10,8 @@ const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
   "img-src 'self' https://aiau.group data:",
   "script-src 'self'",
-  "style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com",
-  "font-src 'self' https://cdnjs.cloudflare.com",
+  "style-src 'self' 'unsafe-inline'",
+  "font-src 'self'",
   "frame-src https://luma.com https://docs.google.com",
   "connect-src 'self'",
   "base-uri 'self'",
@@ -43,5 +43,3 @@ export default {
     return withSecurityHeaders(request, response);
   },
 };
-
-

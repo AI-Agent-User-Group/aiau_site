@@ -1,0 +1,17 @@
+---
+interface Props {
+  class?: string;
+  hover?: boolean;
+}
+
+const { class: className = '', hover = false } = Astro.props;
+
+/* Cursor: hairline-only depth, no shadows. White card on cream canvas */
+const hoverClasses = hover
+  ? 'transition-all duration-150 hover:-translate-y-0.5'
+  : '';
+---
+
+<div class={`rounded-xl bg-surface p-6 dark:bg-dark-surface ${hoverClasses} ${className}`}>
+  <slot />
+</div>

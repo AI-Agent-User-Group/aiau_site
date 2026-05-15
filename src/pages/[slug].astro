@@ -1,6 +1,7 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ReportSection from '../components/ReportSection.astro';
 import { toAbsoluteUrl } from '../config/site';
 
 export async function getStaticPaths() {
@@ -31,7 +32,10 @@ const pageName = entry.data.metaTitle.replace(/\s+\|\s+AIAU$/, '');
     { name: pageName, item: toAbsoluteUrl(`/${entry.id}/`) },
   ]}
 >
-  <article class="prose prose-zinc max-w-none dark:prose-invert">
-    <Content />
-  </article>
+  <div class="mx-auto max-w-3xl">
+    <article class="prose prose-zinc max-w-none dark:prose-invert">
+      <Content />
+    </article>
+  </div>
+  <ReportSection />
 </BaseLayout>

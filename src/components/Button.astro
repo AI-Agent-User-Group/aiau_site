@@ -1,0 +1,38 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'tertiary';
+  size?: 'sm' | 'md' | 'lg';
+  target?: string;
+  rel?: string;
+  ariaLabel?: string;
+  class?: string;
+}
+
+const { href, variant = 'primary', size = 'md', target, rel, ariaLabel, class: className = '' } = Astro.props;
+
+/* Cursor: 8px radius buttons, not pills, not 2xl */
+const variants: Record<string, string> = {
+  primary: 'bg-primary text-white hover:bg-primary-active transition-colors duration-150',
+  secondary: 'bg-surface text-ink border border-hairline hover:border-hairline-strong transition-all duration-150 dark:bg-dark-surface dark:border-dark-hairline dark:text-canvas',
+  tertiary: 'bg-transparent text-ink hover:text-primary transition-colors duration-150 dark:text-canvas',
+};
+
+const sizes: Record<string, string> = {
+  sm: 'px-3 py-1.5 text-sm rounded-md',
+  md: 'px-4 py-2 text-sm rounded-md',
+  lg: 'px-5 py-2.5 text-base rounded-md',
+};
+
+const classes = `inline-flex items-center justify-center gap-2 font-medium ${variants[variant]} ${sizes[size]} ${className}`;
+---
+
+{href ? (
+  <a href={href} target={target} rel={rel} aria-label={ariaLabel} class={classes}>
+    <slot />
+  </a>
+) : (
+  <button aria-label={ariaLabel} class={classes}>
+    <slot />
+  </button>
+)}
