@@ -14,7 +14,7 @@
 ### 必要要件
 - Node.js 20以上（LTS推奨）
 - npm
-- Cloudflare Wrangler 3系（`npm i -D wrangler` 済み）
+- Cloudflare Wrangler 4系（`npm i -D wrangler` 済み）
 
 ### 依存関係のインストール
 ```bash
@@ -93,7 +93,7 @@ npm run deploy
 
 ## コミュニティ
 - X: `https://x.com/ai_agent_ug`
-- Discord: `https://discord.gg/GatQE7wGvK`
+- Discord: `https://discord.gg/RNaAgXZngh`
 
 ## ライセンス
 本リポジトリは **MIT License** で提供されます。詳細は `LICENSE` を参照してください。
