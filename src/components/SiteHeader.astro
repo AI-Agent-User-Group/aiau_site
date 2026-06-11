@@ -67,35 +67,40 @@ const normalizedCurrentPath = normalizePathname(currentPath);
 </header>
 
 <script>
-  const menuButton = document.getElementById('menu-button')!;
-  const siteNav = document.getElementById('site-nav')!;
-  const iconOpen = document.getElementById('menu-icon-open')!;
-  const iconClose = document.getElementById('menu-icon-close')!;
+  function initSiteHeader() {
+    const menuButton = document.getElementById('menu-button')!;
+    const siteNav = document.getElementById('site-nav')!;
+    const iconOpen = document.getElementById('menu-icon-open')!;
+    const iconClose = document.getElementById('menu-icon-close')!;
 
-  let isOpen = false;
+    let isOpen = false;
 
-  function toggleMenu() {
-    isOpen = !isOpen;
-    menuButton.setAttribute('aria-expanded', String(isOpen));
+    function toggleMenu() {
+      isOpen = !isOpen;
+      menuButton.setAttribute('aria-expanded', String(isOpen));
 
-    if (isOpen) {
-      iconOpen.classList.add('hidden');
-      iconClose.classList.remove('hidden');
-      siteNav.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-2');
-      siteNav.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
-    } else {
-      iconOpen.classList.remove('hidden');
-      iconClose.classList.add('hidden');
-      siteNav.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
-      siteNav.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      if (isOpen) {
+        iconOpen.classList.add('hidden');
+        iconClose.classList.remove('hidden');
+        siteNav.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-2');
+        siteNav.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      } else {
+        iconOpen.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+        siteNav.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
+        siteNav.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      }
     }
+
+    menuButton.addEventListener('click', toggleMenu);
+
+    document.addEventListener('click', (e) => {
+      if (isOpen && !menuButton.contains(e.target as Node) && !siteNav.contains(e.target as Node)) {
+        toggleMenu();
+      }
+    });
   }
 
-  menuButton.addEventListener('click', toggleMenu);
-
-  document.addEventListener('click', (e) => {
-    if (isOpen && !menuButton.contains(e.target as Node) && !siteNav.contains(e.target as Node)) {
-      toggleMenu();
-    }
-  });
+  initSiteHeader();
+  document.addEventListener('astro:page-load', initSiteHeader);
 </script>
