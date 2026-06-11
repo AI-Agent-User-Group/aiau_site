@@ -9,4 +9,11 @@ export default defineConfig({
     format: 'directory',
   },
   trailingSlash: 'ignore',
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'viewport',
+  },
+  experimental: {
+    clientPrerender: true,
+  },
 });
