@@ -1,3 +1,5 @@
+import { DoorOpen, Presentation, Move, Camera, Users, Coffee, type IconNode } from 'lucide';
+
 type LinkedItem = {
   prefix: string;
   href: string;
@@ -7,7 +9,7 @@ type LinkedItem = {
 
 type EventFlowStep = {
   number: string;
-  icon: string;
+  icon: IconNode | null;
   title: string;
   items: string[];
   linkedItem?: LinkedItem;
@@ -23,13 +25,13 @@ export const preVisitChecks = [
 export const eventFlowSteps: EventFlowStep[] = [
   {
     number: '1',
-    icon: 'fa-door-open',
+    icon: DoorOpen,
     title: '受付〜入室',
     items: ['受付列は静かに待機', '荷物は足元や荷物置きへ', '通路・出入口はふさがない'],
   },
   {
     number: '2',
-    icon: 'fa-chalkboard-user',
+    icon: Presentation,
     title: 'セッション中',
     items: ['通知オフ、私語・通話は控えめに', '質問は簡潔に1つずつ'],
     linkedItem: {
@@ -41,13 +43,13 @@ export const eventFlowSteps: EventFlowStep[] = [
   },
   {
     number: '3',
-    icon: 'fa-road',
+    icon: Move,
     title: '移動・休憩',
     items: ['通路・避難口は常に確保', '席移動は休憩時間に'],
   },
   {
     number: '4',
-    icon: 'fa-camera',
+    icon: Camera,
     title: '写真・SNS',
     items: ['個人が写る写真はOKをもらってから', '撮影NGの表示は守る'],
     linkedItem: {
@@ -59,13 +61,13 @@ export const eventFlowSteps: EventFlowStep[] = [
   },
   {
     number: '5',
-    icon: 'fa-people-arrows',
+    icon: Users,
     title: '交流タイム',
     items: ['名刺・SNS交換は相手のOKをもらってから', '距離感を大切に', '場と時間を選んで交流'],
   },
   {
     number: '6',
-    icon: 'fa-utensils',
+    icon: Coffee,
     title: '飲食・その他',
     items: ['飲食はほどほどに。泥酔はNG', 'ゴミは分別して処分', '貴重品は自分で管理'],
   },

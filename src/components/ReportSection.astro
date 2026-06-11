@@ -1,0 +1,30 @@
+---
+import { siteConfig } from '../config/site';
+import Button from './Button.astro';
+import { renderLucideIcon } from '../lib/lucide';
+import { MessageSquare, FileText } from 'lucide';
+---
+
+<section class="mt-20 border-t border-hairline pt-20 dark:border-dark-hairline">
+  <div class="mx-auto max-w-2xl text-center">
+    {/* Cursor-style section label: 11px uppercase, 600 weight, 0.88px tracking */}
+    <p class="text-[11px] font-semibold uppercase tracking-[0.88px] text-muted">Contact</p>
+    <p class="mt-4 text-3xl font-normal leading-[1.1] tracking-tight text-ink dark:text-canvas">
+      困ったことがあれば、遠慮なく
+    </p>
+    <p class="mt-4 text-body">
+      ハラスメント、不適切な営業・勧誘、その他の問題を見かけた場合はご連絡ください。
+      通報者・被害者のプライバシーは最優先で保護します。
+    </p>
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+      <Button href={siteConfig.communityLinks.x} variant="primary" target="_blank" rel="noopener noreferrer">
+        <Fragment set:html={renderLucideIcon(MessageSquare, { width: 16, height: 16 })} />
+        <span>公式X（DM）</span>
+      </Button>
+      <Button href={siteConfig.communityLinks.reportForm} variant="secondary" target="_blank" rel="noopener noreferrer">
+        <Fragment set:html={renderLucideIcon(FileText, { width: 16, height: 16 })} />
+        <span>匿名で報告する</span>
+      </Button>
+    </div>
+  </div>
+</section>
